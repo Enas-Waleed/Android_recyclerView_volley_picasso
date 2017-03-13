@@ -34,7 +34,7 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String URL_DATA ="http://www.buzzfeed.com/api/v2/feeds/lol";
+    private static final String URL_DATA ="http://www.omdbapi.com/?s=Batman&page=2";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
 
@@ -66,14 +66,14 @@ public class MainActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            JSONArray jsonArray = jsonObject.getJSONArray("buzzes");
+                            JSONArray jsonArray = jsonObject.getJSONArray("Search");
 
                             for( int i=0;i < jsonArray.length();i++){
                                 JSONObject o = jsonArray.getJSONObject(i);
                                 ListItem listItem = new ListItem(
-                                        o.getString("description"),
-                                        o.getString("username"),
-                                        o.getString("images")
+                                        o.getString("Title"),
+                                        o.getString("Year"),
+                                        o.getString("Poster")
                                 );
                                 listItems.add(listItem);
                             }
